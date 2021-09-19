@@ -1,3 +1,5 @@
+var reposHidden = ['pabloespinosa12','pabloespinosa12.github.io'];
+
 (function($) {
 
 	var	$window = $(window),
@@ -184,12 +186,11 @@
 		fetch('https://api.github.com/users/pabloespinosa12/repos')
 			.then(response => response.json())
 				.then(data => {
-					console.log(data);
 					data.sort((a,b) =>{
 						return b.stargazers_count - a.stargazers_count;
 					});
 					for(var d of data){
-						if(d.name != 'pabloespinosa12'){
+						if(!reposHidden.includes(d.name)){
 							var h2 = document.createElement('h2');
 							h2.innerHTML = d.name;
 
