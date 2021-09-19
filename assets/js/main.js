@@ -184,6 +184,10 @@
 		fetch('https://api.github.com/users/pabloespinosa12/repos')
 			.then(response => response.json())
 				.then(data => {
+					console.log(data);
+					data.sort((a,b) =>{
+						return b.stargazers_count - a.stargazers_count;
+					});
 					for(var d of data){
 						if(d.name != 'pabloespinosa12'){
 							var h2 = document.createElement('h2');
@@ -207,7 +211,4 @@
 						}
 					}
 				});
-		
-		
-
 })(jQuery);
